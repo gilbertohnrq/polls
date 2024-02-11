@@ -5,6 +5,8 @@ import { createPoll } from './routes/create-poll';
 import { getPoll } from './routes/get-poll';
 import { voteOnPoll } from './routes/vote-on-poll';
 import { pollResults } from './ws/poll-results';
+import { getAllPolls } from './routes/get-all-polls';
+import { deletePoll } from './routes/delete-poll';
 
 const app = fastify();
 
@@ -15,10 +17,18 @@ app.register(cookie, {
 
 app.register(websocket);
 
-app.register(createPoll);
+//GET
 app.register(getPoll);
+app.register(getAllPolls);
+
+//POST
+app.register(createPoll);
 app.register(voteOnPoll);
 
+//DELETE
+app.register(deletePoll);
+
+//WS
 app.register(pollResults);
 
 app.listen({ port: 3333, host: '192.168.0.120' }).then(() => {
