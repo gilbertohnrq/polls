@@ -31,6 +31,11 @@ app.register(deletePoll);
 //WS
 app.register(pollResults);
 
-app.listen({ port: 3333, host: '192.168.0.120' }).then(() => {
-	console.log('Server is running on http://192.168.0.120:3333');
-});
+app
+	.listen({
+		port: process.env.PORT ? Number(process.env.PORT) : 3333,
+		host: '0.0.0.0',
+	})
+	.then(() => {
+		console.log('Server is running');
+	});
